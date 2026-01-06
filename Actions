@@ -1,0 +1,35 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class LoginUsingActions {
+
+    @Test
+    public void loginWithActions() {
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.get("https://www.saucedemo.com/");
+        Actions actions = new Actions(driver);
+        WebElement username = driver.findElement(By.id("user-name"));
+        WebElement password = driver.findElement(By.id("password"));
+        WebElement loginBtn = driver.findElement(By.id("login-button"));
+        actions.click(username)
+        actions.sendKeys("standard_user")
+        actions.build()
+        actions.perform();
+        actions.click(password)
+        actions.sendKeys("secret_sauce")
+        actions.build()
+        actions.perform();
+        actions.moveToElement(loginBtn)
+        actions.click()
+        actions.build()
+        actions.perform();
+
+        System.out.println("Login performed successfully using Actions class");
+    }
+}
