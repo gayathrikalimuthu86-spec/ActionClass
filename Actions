@@ -1,3 +1,4 @@
+1. Take any sample website and write a program to login using Actions (keys and mouse actions)
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,3 +34,40 @@ public class LoginUsingActions {
         System.out.println("Login performed successfully using Actions class");
     }
 }
+
+2. For the same above, select the username and password using keys actions
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.annotations.Test;
+
+public class SelectTextUsingKeys {
+
+    @Test
+    public void selectUsernameAndPassword() {
+
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
+        driver.get("https://www.saucedemo.com/");
+
+        Actions actions = new Actions(driver);
+
+        WebElement username = driver.findElement(By.id("user-name"));
+        WebElement password = driver.findElement(By.id("password"));
+        WebElement loginBtn = driver.findElement(By.id("login-button"));
+        actions.click(username)
+        actions.sendKeys("standard_user")
+        actions.perform();
+
+        actions.click(password)
+        actions.sendKeys("secret_sauce")
+        actions.perform();
+        actions.moveToElement(loginBtn).click().perform();
+        System.out.println("Username and Password selected using Keys actions");
+    }
+}
+
